@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Updated Dual-Tone: Indigo (Primary) + Rose (Secondary) */
+    --background: 240 50% 99%;
+    --foreground: 224 71% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+    
+    --primary: 243.4 75.4% 58.6%; /* Vivid Indigo */
+    --primary-foreground: 210 40% 98%;
+    
+    --secondary: 336.3 80% 57.8%; /* Modern Rose */
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 243.4 75.4% 58.6%;
+    --radius: 0.75rem;
+
+    /* Gradient Tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(243.4 75.4% 58.6%), hsl(262.1 83.3% 57.8%));
+    --gradient-secondary: linear-gradient(135deg, hsl(336.3 80% 57.8%), hsl(350 89% 60%));
+    --gradient-dual: linear-gradient(135deg, hsl(243.4 75.4% 58.6%), hsl(336.3 80% 57.8%));
+  }
+
+  .dark {
+    --background: 240 40% 4%; /* Darker, slightly tinted */
+    --foreground: 0 0% 98%;
+    --card: 240 40% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 40% 4%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 243.4 75.4% 65%; /* Slightly brighter for dark mode */
+    --primary-foreground: 240 5.9% 10%;
+    
+    --secondary: 336.3 80% 65%;
+    --secondary-foreground: 240 5.9% 10%;
+    
+    --muted: 240 10% 12%; 
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 10% 12%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 10% 15%;
+    --input: 240 10% 15%;
+    --ring: 243.4 75.4% 65%;
+
+    /* Dark Gradients are softer */
+    --gradient-primary: linear-gradient(135deg, hsl(243.4 75.4% 65%), hsl(262.1 83.3% 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(336.3 80% 65%), hsl(350 89% 65%));
+    --gradient-dual: linear-gradient(135deg, hsl(243.4 75.4% 65%), hsl(336.3 80% 65%));
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out, color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight font-bold;
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+@layer utilities {
+  .bg-dual-gradient {
+    background: var(--gradient-dual);
+  }
+  .bg-primary-gradient {
+    background: var(--gradient-primary);
+  }
+  .bg-secondary-gradient {
+    background: var(--gradient-secondary);
+  }
+  
+  .text-dual-gradient {
+    background: var(--gradient-dual);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+
+  .glass-card {
+    @apply bg-background/60 backdrop-blur-md border border-white/10 dark:border-white/5;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(-45deg, rgba(0,0,0,0.05) 25%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.05) 75%);
+    background-size: 400% 400%;
+    animation: shimmer 1.5s ease infinite;
+  }
+  .dark .animate-shimmer {
+    background: linear-gradient(-45deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 75%);
+    background-size: 400% 400%;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes fadeSlideIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fadeSlideIn { animation: fadeSlideIn 0.6s ease-out forwards; }
+  
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+
+  .hover-lift {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  .dark .hover-lift:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  }
+}

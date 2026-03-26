@@ -1,0 +1,21 @@
+{
+  "name": "HireSphere - Premium Job Portal",
+  "short_name": "HireSphere",
+  "description": "Find your dream job or hire top talent with HireSphere — India's premium job portal.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#7c3aed",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "en",
+  "dir": "ltr"
+}
