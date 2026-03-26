@@ -17,7 +17,7 @@ services:
       - key: CORS_ORIGIN
         fromService:
           name: hiresphere-frontend
-          type: static
+          type: static_site
           property: url
       - key: NODE_VERSION
         value: 20 # Using a stable LTS version
@@ -39,7 +39,7 @@ services:
         value: false
 
   # Frontend Static Site
-  - type: static
+  - type: static_site
     name: hiresphere-frontend
     runtime: node
     plan: free
