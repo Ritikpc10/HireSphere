@@ -1,6 +1,5 @@
 specVersion: 1
 services:
-  # Backend Web Service
   - type: web
     name: hiresphere-backend
     runtime: node
@@ -21,7 +20,7 @@ services:
           type: static
           property: url
       - key: NODE_VERSION
-        value: 20
+        value: 18
       - key: CLOUD_NAME
         sync: false
       - key: CLOUD_API_KEY
@@ -39,10 +38,8 @@ services:
       - key: SEED_DUMMY_JOBS
         value: false
 
-  # Frontend Static Site
   - type: static
     name: hiresphere-frontend
-    # Note: 'runtime' is not used for static sites in Render Blueprints
     rootDir: JOB-PORTAL/Frontend
     buildCommand: npm install && npm run build
     publishDir: dist
