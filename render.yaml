@@ -1,15 +1,16 @@
+specVersion: 1
 services:
   # Backend Web Service
   - type: web
     name: hiresphere-backend
     runtime: node
-    plan: free # Change to starter if you need more power
+    plan: free
     rootDir: JOB-PORTAL/Backend
     buildCommand: npm install --legacy-peer-deps
     startCommand: node index.js
     envVars:
       - key: MONGO_URI
-        sync: false # User will provide this in Render Dashboard
+        sync: false
       - key: JWT_SECRET
         generateValue: true
       - key: PORT
@@ -17,10 +18,10 @@ services:
       - key: CORS_ORIGIN
         fromService:
           name: hiresphere-frontend
-          type: static_site
+          type: static
           property: url
       - key: NODE_VERSION
-        value: 20 # Using a stable LTS version
+        value: 20
       - key: CLOUD_NAME
         sync: false
       - key: CLOUD_API_KEY
@@ -39,10 +40,9 @@ services:
         value: false
 
   # Frontend Static Site
-  - type: static_site
+  - type: static
     name: hiresphere-frontend
-    runtime: node
-    plan: free
+    # Note: 'runtime' is not used for static sites in Render Blueprints
     rootDir: JOB-PORTAL/Frontend
     buildCommand: npm install && npm run build
     publishDir: dist
@@ -52,5 +52,3 @@ services:
           name: hiresphere-backend
           type: web
           property: url
-      - key: NODE_VERSION
-        value: 20
